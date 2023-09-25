@@ -1,0 +1,41 @@
+<body>
+  <div class="container">
+    <form class="search-box" (submit)="searchWeather()">
+      <input type="text" [(ngModel)]="city" name="city" placeholder="Enter Location">
+      <button type="submit" class="image-button" (click)="searchWeather">
+        <img src="./assets/images/search.png" width="20px" height="20px">
+      </button>
+      <button type="button" class="text-button" routerLink="/forecast/{{city}}" >
+        <p>For 5 Days</p>
+      </button>
+    </form>
+    <div class="not-found" *ngIf="myWeather">
+      <img src="{{iconURL}}">
+      <p>Oops! Invalid Location : /</p>
+    </div>
+    
+    <div class="weather-box" *ngIf="myWeather">
+      <img [src]="iconURL">
+      <p class="temperature">{{ temperature }}°C</p>
+      <p class="description">{{ description }}</p>
+    </div>
+    
+    <div class="weather-details" *ngIf="myWeather">
+      <div class="humidity">
+        <img src="./assets/images/drop.png" width="20px" height="20px">
+        <div class="text">
+          <span>{{ humidity }}%</span>
+          <p>Humidity</p>
+        </div>
+      </div>
+    
+      <div class="wind">
+        <img src="./assets/images/wind.png" width="20px" height="20px">
+        <div class="text">
+          <span>{{ wind }} m/s</span>
+          <p>Wind speed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
